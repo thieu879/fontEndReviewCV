@@ -6,6 +6,7 @@
       :alt="name || 'Avatar'"
       class="w-full h-full object-cover"
       :class="shapeClass"
+      crossorigin="anonymous"
       @error="imgError = true"
     />
     <div

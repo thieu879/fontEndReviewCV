@@ -101,7 +101,8 @@
                   </h3>
                   <span class="text-xs text-slate-400">{{ t('upload.step1.jd.hint') }}</span>
                 </div>
-                <BaseTextarea v-model="jobDescription" :rows="5" :placeholder="t('upload.step1.jd.placeholder')" resize="vertical" />
+                <BaseTextarea v-model="jobDescription" :rows="5" :placeholder="t('upload.step1.jd.placeholder')"
+                  resize="vertical" />
               </div>
 
               <!-- Auto-Extraction banner -->
@@ -133,7 +134,7 @@
                   class="flex-1 flex flex-col items-center justify-center p-6 text-center">
                   <FileText class="w-16 h-16 text-blue-400 mb-4" />
                   <p class="font-semibold text-white mb-1">{{ selectedFile?.name || t('upload.step1.preview.noFile')
-                    }}</p>
+                  }}</p>
                   <p class="text-xs text-gray-400">{{ t('upload.step1.preview.noPreviewWord') }}</p>
                 </div>
                 <div v-else-if="isUploading" class="flex-1 flex flex-col items-center justify-center p-6">
@@ -167,7 +168,8 @@
                         <p class="text-xs text-gray-400 mb-2">{{ t('upload.step1.preview.skillsLabel') }} ({{
                           candidateProfile.skills?.length || 0 }})</p>
                         <div class="flex flex-wrap gap-1">
-                          <BaseBadge v-for="skill in (candidateProfile.skills || []).slice(0, 6)" :key="skill" variant="primary" size="sm">{{ skill }}</BaseBadge>
+                          <BaseBadge v-for="skill in (candidateProfile.skills || []).slice(0, 6)" :key="skill"
+                            variant="primary" size="sm">{{ skill }}</BaseBadge>
                         </div>
                       </div>
                     </div>
@@ -182,7 +184,8 @@
                 </div>
               </div>
               <div class="border-t border-gray-100 p-5">
-                <BaseButton variant="primary" class="w-full" :disabled="!candidateProfile || isUploading" :loading="isUploading" @click="goNext">
+                <BaseButton variant="primary" class="w-full" :disabled="!candidateProfile || isUploading"
+                  :loading="isUploading" @click="goNext">
                   Proceed to Analysis
                 </BaseButton>
               </div>
@@ -256,7 +259,8 @@
                 <BaseInput v-model="editableFields.email" type="email" :label="t('upload.step2.email')" />
                 <BaseInput v-model="editableFields.phone" type="tel" :label="t('upload.step2.phone')" />
                 <BaseInput v-model="editableFields.address" type="text" :label="t('upload.step2.location')" />
-                <BaseInput v-model="editableFields.linkedinUrl" type="url" :label="t('upload.step2.linkedin')" class="col-span-2" />
+                <BaseInput v-model="editableFields.linkedinUrl" type="url" :label="t('upload.step2.linkedin')"
+                  class="col-span-2" />
                 <BaseInput v-model="editableFields.githubUrl" type="url" :label="t('upload.step2.github')" />
                 <BaseInput v-model="editableFields.portfolioUrl" type="url" :label="t('upload.step2.portfolio')" />
               </div>
@@ -286,7 +290,8 @@
                     <BaseInput v-model="exp.startDate" type="text" :label="t('upload.step2.startDate')" />
                     <BaseInput v-model="exp.endDate" type="text" :label="t('upload.step2.endDate')" />
                     <div class="col-span-2">
-                      <label class="text-xs text-gray-400 font-semibold block mb-1">{{ t('upload.step2.description') }}</label>
+                      <label class="text-xs text-gray-400 font-semibold block mb-1">{{ t('upload.step2.description')
+                        }}</label>
                       <BaseTextarea v-model="exp.description" :rows="2" resize="none" />
                     </div>
                   </div>
@@ -371,7 +376,8 @@
                     <BaseInput v-model="proj.role" type="text" :label="t('upload.step2.role')" />
                     <BaseInput v-model="proj.projectUrl" type="url" :label="t('upload.step2.url')" class="col-span-2" />
                     <div class="col-span-2">
-                      <label class="text-xs text-gray-400 font-semibold block mb-1">{{ t('upload.step2.description') }}</label>
+                      <label class="text-xs text-gray-400 font-semibold block mb-1">{{ t('upload.step2.description')
+                        }}</label>
                       <BaseTextarea v-model="proj.description" :rows="2" resize="none" />
                     </div>
                   </div>
@@ -419,7 +425,8 @@
                 <Globe class="w-5 h-5 text-blue-600" />
                 <h3 class="text-lg font-bold text-gray-900">{{ t('upload.step2.languages') }}</h3>
               </div>
-              <BaseTagInput v-model="editableFields.languages" :placeholder="t('upload.step2.addLanguagePlaceholder')" />
+              <BaseTagInput v-model="editableFields.languages"
+                :placeholder="t('upload.step2.addLanguagePlaceholder')" />
             </section>
           </div>
 
@@ -458,7 +465,8 @@
                 <FileText class="w-12 h-12 text-blue-400 mb-3" />
                 <p class="text-sm font-medium text-gray-700 mb-1">{{ t('upload.step2.docxFile') }}</p>
                 <p class="text-xs text-gray-400">{{ t('upload.step2.previewNotAvailable') }}</p>
-                <BaseButton variant="primary" size="sm" @click="downloadOptimizedPdf" :disabled="isDownloading" class="mt-3">
+                <BaseButton variant="primary" size="sm" @click="downloadOptimizedPdf" :disabled="isDownloading"
+                  class="mt-3">
                   <Loader2 v-if="isDownloading" class="w-3 h-3 animate-spin inline mr-1" />
                   Download
                 </BaseButton>
@@ -496,7 +504,8 @@
                   class="bg-white border border-gray-200 rounded-xl p-6 flex flex-col items-center justify-center text-center shadow-sm">
                   <p class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">{{
                     t('upload.step3.overallScore') }}</p>
-                  <BaseScoreRing :score="matchResult?.matchScore || candidateProfile?.aiScore || 0" size="md" color="blue" />
+                  <BaseScoreRing :score="matchResult?.matchScore || candidateProfile?.aiScore || 0" size="md"
+                    color="blue" />
                   <span class="mt-4 px-4 py-1.5 rounded-full bg-teal-100 text-teal-700 text-xs font-bold">{{
                     getScoreLabel(matchResult?.matchScore || candidateProfile?.aiScore || 0) }}</span>
                 </div>
@@ -572,7 +581,8 @@
                   <p class="text-xs font-bold text-gray-400 uppercase mb-2">{{ t('upload.step3.suggestedPositions') }}
                   </p>
                   <div class="flex flex-wrap gap-2">
-                    <BaseBadge v-for="pos in candidateProfile.suggestedPositions" :key="pos" variant="success" size="sm">{{ pos }}</BaseBadge>
+                    <BaseBadge v-for="pos in candidateProfile.suggestedPositions" :key="pos" variant="success"
+                      size="sm">{{ pos }}</BaseBadge>
                   </div>
                 </div>
               </div>
@@ -581,11 +591,13 @@
               <div v-if="matchResult" class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
                 <p class="text-xs font-bold text-gray-400 uppercase mb-3">{{ t('upload.step3.matchedSkills') }}</p>
                 <div class="flex flex-wrap gap-1 mb-4">
-                  <BaseBadge v-for="skill in matchResult.matchedSkills" :key="skill" variant="success" size="sm">{{ skill }}</BaseBadge>
+                  <BaseBadge v-for="skill in matchResult.matchedSkills" :key="skill" variant="success" size="sm">{{
+                    skill }}</BaseBadge>
                 </div>
                 <p class="text-xs font-bold text-gray-400 uppercase mb-3">{{ t('upload.step3.missingSkills') }}</p>
                 <div class="flex flex-wrap gap-1">
-                  <BaseBadge v-for="skill in matchResult.missingSkills" :key="skill" variant="danger" size="sm">{{ skill }}</BaseBadge>
+                  <BaseBadge v-for="skill in matchResult.missingSkills" :key="skill" variant="danger" size="sm">{{ skill
+                    }}</BaseBadge>
                 </div>
               </div>
 
@@ -630,7 +642,8 @@
               <BaseButton variant="secondary" @click="skipOptimization">
                 {{ t('upload.skipOptimize') }}
               </BaseButton>
-              <BaseButton variant="primary" @click="downloadOptimizedPdf" :disabled="isDownloading || !cvDocument" :loading="isDownloading">
+              <BaseButton variant="primary" @click="downloadOptimizedPdf" :disabled="isDownloading || !cvDocument"
+                :loading="isDownloading">
                 <Download v-if="!isDownloading" class="w-4 h-4" /> {{ isDownloading ? t('upload.step4.generating') :
                   t('upload.step4.downloadPdf') }}
               </BaseButton>
@@ -741,7 +754,7 @@
                     <div class="cv-skills-list">
                       <span v-for="skill in getOptimizedSkills()" :key="skill" class="cv-skill-tag cv-skill-improved">{{
                         skill
-                      }}</span>
+                        }}</span>
                     </div>
                   </div>
 
@@ -794,9 +807,10 @@
               <Pencil class="w-4 h-4 text-orange-500" />{{ t('upload.step4.additionalInstructions') }}
             </h3>
             <div class="flex gap-4">
-              <BaseTextarea v-model="optimizationInstructions"
-                :placeholder="t('upload.step4.instructionsPlaceholder')" :rows="3" resize="vertical" class="flex-1" />
-              <BaseButton variant="primary" @click="reOptimize" :disabled="isOptimizing" :loading="isOptimizing" class="shrink-0">
+              <BaseTextarea v-model="optimizationInstructions" :placeholder="t('upload.step4.instructionsPlaceholder')"
+                :rows="3" resize="vertical" class="flex-1" />
+              <BaseButton variant="primary" @click="reOptimize" :disabled="isOptimizing" :loading="isOptimizing"
+                class="shrink-0">
                 <RefreshCw :class="['w-5 h-5', isOptimizing && 'animate-spin']" />
                 <span>{{ isOptimizing ? t('upload.step4.optimizing') : t('upload.step4.reOptimize') }}</span>
               </BaseButton>
@@ -892,12 +906,14 @@
         </BaseButton>
         <div class="flex items-center gap-4">
           <!-- Step 1 -->
-          <BaseButton v-if="currentStep === 1" variant="primary" @click="goNext" :disabled="!canProceed" :loading="isProcessing">
+          <BaseButton v-if="currentStep === 1" variant="primary" @click="goNext" :disabled="!canProceed"
+            :loading="isProcessing">
             {{ t('upload.step1.proceed') }}
             <ArrowRight v-if="!isProcessing" class="w-4 h-4" />
           </BaseButton>
           <!-- Step 2 -->
-          <BaseButton v-else-if="currentStep === 2" variant="primary" @click="goNext" :disabled="isProcessing" :loading="isProcessing">
+          <BaseButton v-else-if="currentStep === 2" variant="primary" @click="goNext" :disabled="isProcessing"
+            :loading="isProcessing">
             {{ isProcessing ? t('upload.step2.analyzing') : t('upload.step2.reviewWithJd') }}
             <ArrowRight v-if="!isProcessing" class="w-4 h-4" />
           </BaseButton>
@@ -1334,30 +1350,174 @@ onUnmounted(() => { if (pdfBlobUrl.value) window.URL.revokeObjectURL(pdfBlobUrl.
 </script>
 
 <style scoped>
-.cv-preview { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 24px; border-radius: 8px; max-width: 100%; }
-.cv-preview-optimized { background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%); border: 2px solid #86efac; }
-.cv-header { text-align: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb; }
-.cv-preview-optimized .cv-header { border-bottom-color: #86efac; }
-.cv-name { font-size: 22px; font-weight: 700; color: #1f2937; margin-bottom: 8px; }
-.cv-name-optimized { color: #166534; }
-.cv-contact-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 16px; font-size: 12px; color: #6b7280; }
-.cv-link { font-size: 11px; color: #3b82f6; margin-top: 4px; }
-.cv-content-section { margin-bottom: 18px; }
-.cv-section-title { font-size: 14px; font-weight: 700; color: #1f2937; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; padding-bottom: 4px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; gap: 8px; }
-.cv-preview-optimized .cv-section-title { color: #166534; border-bottom-color: #bbf7d0; }
-.cv-ai-badge { font-size: 9px; font-weight: 600; color: #ffffff; background: linear-gradient(135deg, #10b981 0%, #059669 100%); padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.3px; }
-.cv-text { font-size: 12px; color: #4b5563; line-height: 1.6; }
-.cv-text-improved { color: #166534; position: relative; }
-.cv-text-improved::before { content: ''; position: absolute; left: -8px; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, #10b981 0%, #34d399 100%); border-radius: 2px; }
-.cv-skills-list { display: flex; flex-wrap: wrap; gap: 6px; }
-.cv-skill-tag { font-size: 11px; padding: 4px 10px; background: #f3f4f6; color: #4b5563; border-radius: 16px; border: 1px solid #e5e7eb; }
-.cv-skill-improved { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #065f46; border-color: #6ee7b7; font-weight: 500; }
-.cv-experience-item { margin-bottom: 14px; padding-left: 12px; border-left: 2px solid #e5e7eb; }
-.cv-preview-optimized .cv-experience-item { border-left-color: #86efac; }
-.cv-exp-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
-.cv-exp-position { font-size: 13px; font-weight: 600; color: #1f2937; }
-.cv-exp-company { font-size: 12px; color: #6b7280; }
-.cv-exp-date { font-size: 11px; color: #9ca3af; margin-bottom: 6px; }
-.cv-education-item { margin-bottom: 10px; padding-left: 12px; border-left: 2px solid #e5e7eb; }
-.cv-preview-optimized .cv-education-item { border-left-color: #86efac; }
+.cv-preview {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 24px;
+  border-radius: 8px;
+  max-width: 100%;
+}
+
+.cv-preview-optimized {
+  background: linear-gradient(135deg, #ffffff 0%, #f0fdf4 100%);
+  border: 2px solid #86efac;
+}
+
+.cv-header {
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.cv-preview-optimized .cv-header {
+  border-bottom-color: #86efac;
+}
+
+.cv-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+}
+
+.cv-name-optimized {
+  color: #166534;
+}
+
+.cv-contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 16px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.cv-link {
+  font-size: 11px;
+  color: #3b82f6;
+  margin-top: 4px;
+}
+
+.cv-content-section {
+  margin-bottom: 18px;
+}
+
+.cv-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cv-preview-optimized .cv-section-title {
+  color: #166534;
+  border-bottom-color: #bbf7d0;
+}
+
+.cv-ai-badge {
+  font-size: 9px;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.cv-text {
+  font-size: 12px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.cv-text-improved {
+  color: #166534;
+  position: relative;
+}
+
+.cv-text-improved::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, #10b981 0%, #34d399 100%);
+  border-radius: 2px;
+}
+
+.cv-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cv-skill-tag {
+  font-size: 11px;
+  padding: 4px 10px;
+  background: #f3f4f6;
+  color: #4b5563;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.cv-skill-improved {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  color: #065f46;
+  border-color: #6ee7b7;
+  font-weight: 500;
+}
+
+.cv-experience-item {
+  margin-bottom: 14px;
+  padding-left: 12px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.cv-preview-optimized .cv-experience-item {
+  border-left-color: #86efac;
+}
+
+.cv-exp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.cv-exp-position {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.cv-exp-company {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.cv-exp-date {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-bottom: 6px;
+}
+
+.cv-education-item {
+  margin-bottom: 10px;
+  padding-left: 12px;
+  border-left: 2px solid #e5e7eb;
+}
+
+.cv-preview-optimized .cv-education-item {
+  border-left-color: #86efac;
+}
 </style>

@@ -14,6 +14,7 @@ export const ROUTES = {
   ANALYSIS: '/analysis',
   SEARCH: '/search',
   SHORTLIST: '/shortlist',
+  AI_JOB_MATCHING: '/ai-job-matching',
   PROFILE: '/profile',
   SETTINGS: '/settings',
   ADMIN: '/admin',
@@ -73,6 +74,7 @@ export const NAV_ITEMS = [
   { path: '/analysis', labelKey: 'nav.analysis', icon: 'BarChart3' },
   { path: '/search', labelKey: 'nav.search', icon: 'Search' },
   { path: '/shortlist', labelKey: 'nav.shortlist', icon: 'Bookmark' },
+  { path: '/ai-job-matching', labelKey: 'nav.aiJobMatching', icon: 'Sparkles' },
   { path: '/profile', labelKey: 'nav.profile', icon: 'User' },
   { path: '/settings', labelKey: 'nav.settings', icon: 'Settings' },
 ] as const;

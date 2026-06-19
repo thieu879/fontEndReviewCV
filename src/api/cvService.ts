@@ -45,6 +45,7 @@ export interface CvDocumentResponse {
 // Candidate Profile Types
 // ============================================
 export interface WorkExperienceResponse {
+  id?: string;
   companyName?: string;
   position?: string;
   startDate?: string;
@@ -56,6 +57,7 @@ export interface WorkExperienceResponse {
 }
 
 export interface EducationResponse {
+  id?: string;
   schoolName?: string;
   degree?: string;
   major?: string;
@@ -66,14 +68,20 @@ export interface EducationResponse {
 }
 
 export interface CertificateResponse {
+  id?: string;
+  name?: string;
   certificateName?: string;
+  issuer?: string;
   organization?: string;
+  dateObtained?: string;
   issueDate?: string;
   expiryDate?: string;
-  credentialId?: string;
+  description?: string;
 }
 
 export interface ProjectResponse {
+  id?: string;
+  name?: string;
   projectName?: string;
   role?: string;
   description?: string;

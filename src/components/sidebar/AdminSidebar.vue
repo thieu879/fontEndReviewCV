@@ -62,7 +62,8 @@ import { ref, computed } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import {
   ChevronLeft, ChevronRight, LogOut,
-  Users, ClipboardList, LayoutDashboard, Shield, BarChart3, UserCog
+  LayoutDashboard, Shield, BarChart3,
+  Database, ScrollText, ClipboardList, Users
 } from 'lucide-vue-next';
 import { useAuth } from '@/composables/useAuth';
 import BaseAvatar from '@/components/base/BaseAvatar.vue';
@@ -76,10 +77,10 @@ const toggleSidebar = () => { isCollapsed.value = !isCollapsed.value; };
 
 const navItems = [
   { path: '/admin', label: 'Tổng quan', icon: LayoutDashboard },
-  { path: '/admin/users', label: 'Người dùng', icon: UserCog },
-  { path: '/admin/candidates', label: 'Ứng viên', icon: Users },
-  { path: '/admin/reports', label: 'Báo cáo', icon: BarChart3 },
-  { path: '/admin/logs', label: 'Nhật ký', icon: ClipboardList },
+  { path: '/admin/users', label: 'Người dùng', icon: Users },
+  { path: '/admin/scraping/sources', label: 'Nguồn crawl', icon: Database },
+  { path: '/admin/scraping/logs', label: 'Nhật ký crawl', icon: ScrollText },
+  { path: '/admin/audit', label: 'Nhật ký', icon: ClipboardList },
 ];
 
 const isActive = (path: string) => {

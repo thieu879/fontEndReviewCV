@@ -5,9 +5,8 @@
 
       <div
         class="w-full lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white dark:bg-slate-800 transition-colors duration-200">
-        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">Welcome Back</h2>
-        <p class="text-slate-500 dark:text-slate-400 mb-8 text-sm transition-colors">Precision hiring starts with
-          intelligent insights.</p>
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2 transition-colors">{{ t('auth.welcomeBack') || 'Welcome Back' }}</h2>
+        <p class="text-slate-500 dark:text-slate-400 mb-8 text-sm transition-colors">{{ t('auth.loginSubtitle') || 'Precision hiring starts with intelligent insights.' }}</p>
 
         <form @submit.prevent="handleLogin" class="space-y-5">
           <div v-if="errorMessage"
@@ -15,22 +14,24 @@
             {{ errorMessage }}
           </div>
 
-          <BaseInput v-model="email" type="email" :placeholder="t('auth.emailPlaceholder') || 'name@company.com'"
-            :error="emailError">
-            <template #prefix>
-              <Mail class="w-5 h-5 text-slate-400 dark:text-slate-500" />
-            </template>
-          </BaseInput>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1.5 transition-colors">{{ t('auth.email') || 'Email' }}</label>
+            <BaseInput v-model="email" type="email" :placeholder="t('auth.emailPlaceholder')" :error="emailError">
+              <template #prefix>
+                <Mail class="w-5 h-5 text-slate-400 dark:text-slate-500" />
+              </template>
+            </BaseInput>
+          </div>
 
           <div class="flex flex-col gap-1.5">
             <div class="flex justify-between items-center">
-              <label class="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors">Password</label>
+              <label class="text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors">{{ t('auth.password') || 'Password' }}</label>
               <router-link to="/forgot-password"
                 class="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
-                Forgot password?
+                {{ t('auth.forgotPassword') || 'Forgot password?' }}
               </router-link>
             </div>
-            <BaseInput v-model="password" :type="showPassword ? 'text' : 'password'" placeholder="••••••••">
+            <BaseInput v-model="password" :type="showPassword ? 'text' : 'password'" :placeholder="t('auth.passwordPlaceholder') || '••••••••'">
               <template #prefix>
                 <Lock class="w-5 h-5 text-slate-400 dark:text-slate-500" />
               </template>
@@ -44,11 +45,11 @@
             </BaseInput>
           </div>
 
-          <BaseCheckbox v-model="rememberMe" label="Remember me" class="text-slate-700 dark:text-slate-300" />
+          <BaseCheckbox v-model="rememberMe" :label="t('auth.rememberMe') || 'Remember me'" class="text-slate-700 dark:text-slate-300" />
 
           <BaseButton variant="primary" type="submit" :loading="isLoading"
             class="w-full mt-2 shadow-sm shadow-blue-500/10">
-            {{ isLoading ? 'Signing In...' : 'Sign In to Dashboard' }}
+            {{ isLoading ? (t('auth.signingIn') || 'Signing In...') : (t('auth.signInToDashboard') || 'Sign In to Dashboard') }}
           </BaseButton>
         </form>
 
@@ -60,7 +61,7 @@
             <div class="relative flex justify-center text-sm">
               <span
                 class="px-2 bg-white dark:bg-slate-800 text-slate-400 dark:text-slate-500 text-xs tracking-wider uppercase font-medium transition-colors">
-                Or continue with
+                {{ t('auth.orContinueWith') || 'Or continue with' }}
               </span>
             </div>
           </div>
@@ -74,16 +75,16 @@
             <button
               class="w-full flex items-center justify-center px-4 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg shadow-sm bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-600/80 transition-colors">
               <Building class="h-5 w-5 mr-2 text-slate-500 dark:text-slate-400" />
-              <span class="text-sm font-medium">Enterprise SSO</span>
+              <span class="text-sm font-medium">{{ t('auth.enterpriseSSO') || 'Enterprise SSO' }}</span>
             </button>
           </div>
         </div>
 
         <p class="mt-8 text-center text-sm text-slate-600 dark:text-slate-400 transition-colors">
-          Don't have an account?
+          {{ t('auth.noAccount') || "Don't have an account?" }}
           <router-link to="/register"
             class="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
-            Start free trial
+            {{ t('auth.signUp') || 'Sign up' }}
           </router-link>
         </p>
       </div>
@@ -193,8 +194,15 @@ const handleLogin = async () => {
     const result = await login(email.value, password.value)
 
     if (result.success) {
-      fetchCurrentUser().catch(err => console.log('[Login] Fetch user failed:', err))
-      router.push('/home')
+      // Fetch user data to determine role
+      const userData = await fetchCurrentUser()
+
+      // If admin account, redirect to admin dashboard; otherwise go to home
+      if (userData && isAdminUser(userData)) {
+        router.push('/admin')
+      } else {
+        router.push('/')
+      }
     } else {
       errorMessage.value = result.message
     }
@@ -203,5 +211,17 @@ const handleLogin = async () => {
   } finally {
     isLoading.value = false
   }
+}
+
+const isAdminUser = (userData: any): boolean => {
+  if (!userData) return false
+  const role = (userData.role || '').toLowerCase()
+  const roleNames = userData.roleNames || []
+  return (
+    role === 'admin' ||
+    roleNames.some((r: string) =>
+      r.toLowerCase() === 'admin' || r.toLowerCase() === 'role_admin'
+    )
+  )
 }
 </script>

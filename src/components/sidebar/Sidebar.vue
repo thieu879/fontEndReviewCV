@@ -2,7 +2,7 @@
   <aside :class="[
     'fixed left-0 top-0 h-full z-40 flex flex-col',
     'transition-all duration-300 ease-in-out',
-    'bg-[var(--sidebar-bg)] border-r border-[var(--sidebar-border)]',
+    'bg-sidebar border-r border-sidebar-border',
     isCollapsed ? 'w-[72px]' : 'w-[260px]'
   ]">
     <!-- Logo area -->
@@ -15,18 +15,18 @@
           <FileText class="w-4.5 h-4.5 text-white" />
         </div>
         <div v-if="!isCollapsed" class="min-w-0">
-          <p class="font-bold text-[15px] text-[var(--text-primary)] leading-tight">CV Analyzer</p>
-          <p class="text-[11px] text-[var(--sidebar-text)] font-medium">AI Powered</p>
+          <p class="font-bold text-[15px] text-body leading-tight">CV Analyzer</p>
+          <p class="text-[11px] text-sidebar-text font-medium">AI Powered</p>
         </div>
       </router-link>
 
       <button v-if="!isCollapsed" @click="toggleSidebar"
-        class="w-8 h-8 flex items-center justify-center rounded-lg text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover-bg)] hover:text-[var(--sidebar-text-hover)] transition-all"
+        class="w-8 h-8 flex items-center justify-center rounded-lg text-sidebar-text hover:bg-sidebar-hover-bg hover:text-sidebar-text-hover transition-all"
         :title="t('sidebar.collapse')">
         <ChevronLeft class="w-4 h-4" />
       </button>
       <button v-else @click="toggleSidebar"
-        class="w-8 h-8 flex items-center justify-center rounded-lg text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover-bg)] hover:text-[var(--sidebar-text-hover)] transition-all"
+        class="w-8 h-8 flex items-center justify-center rounded-lg text-sidebar-text hover:bg-sidebar-hover-bg hover:text-sidebar-text-hover transition-all"
         :title="t('sidebar.expand')">
         <ChevronRight class="w-4 h-4" />
       </button>
@@ -35,13 +35,13 @@
     <!-- User section -->
     <div class="mx-3 p-3 rounded-xl shrink-0" :class="[
       isCollapsed ? 'flex justify-center' : '',
-      isCollapsed ? '' : 'bg-[var(--bg-tertiary)]'
+      isCollapsed ? '' : 'bg-app-soft'
     ]">
       <div v-if="!isCollapsed" class="flex items-center gap-3">
         <BaseAvatar :name="userName" :src="userAvatar" size="md" status="online" class="shrink-0" />
         <div class="flex-1 min-w-0">
-          <p class="text-sm font-semibold text-[var(--text-primary)] truncate leading-tight">{{ userName }}</p>
-          <p class="text-xs text-[var(--sidebar-text)] font-medium truncate mt-0.5">{{ userRole }}</p>
+          <p class="text-sm font-semibold text-body truncate leading-tight">{{ userName }}</p>
+          <p class="text-xs text-sidebar-text font-medium truncate mt-0.5">{{ userRole }}</p>
         </div>
       </div>
       <BaseAvatar v-else :name="userName" :src="userAvatar" size="md" status="online" />
@@ -51,7 +51,7 @@
     <nav class="flex-1 px-3 py-2 overflow-y-auto no-scrollbar">
       <!-- Section label -->
       <div v-if="!isCollapsed" class="px-3 mb-2 mt-1">
-        <p class="text-[10px] font-bold uppercase tracking-wider text-[var(--sidebar-text)] opacity-60">Menu</p>
+        <p class="text-[10px] font-bold uppercase tracking-wider text-sidebar-text opacity-60">Menu</p>
       </div>
 
       <!-- Nav items -->
@@ -61,41 +61,41 @@
             'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 group relative',
             isCollapsed ? 'justify-center w-full' : '',
             isActive(item.path)
-              ? 'bg-[var(--sidebar-active-bg)] text-[var(--sidebar-text-active)]'
-              : 'text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover-bg)] hover:text-[var(--sidebar-text-hover)]'
+              ? 'bg-sidebar-active-bg text-sidebar-text-active'
+              : 'text-sidebar-text hover:bg-sidebar-hover-bg hover:text-sidebar-text-hover'
           ]">
           <!-- Active indicator dot -->
           <span v-if="isActive(item.path)"
-            class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-blue-500 rounded-r-full" />
+            class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-blue-500 dark:bg-[rgb(159,183,216)] rounded-r-full" />
 
           <component :is="item.icon" :class="[
             'w-5 h-5 shrink-0 transition-colors',
-            isActive(item.path) ? 'text-[var(--sidebar-icon-active)]' : 'text-[var(--sidebar-icon)] group-hover:text-[var(--sidebar-text-hover)]'
+            isActive(item.path) ? 'text-sidebar-icon-active' : 'text-sidebar-icon group-hover:text-sidebar-text-hover'
           ]" />
           <span v-if="!isCollapsed" class="truncate flex-1">{{ item.label }}</span>
 
           <!-- Active badge -->
           <span v-if="isActive(item.path) && !isCollapsed"
-            class="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0" />
+            class="ml-auto w-1.5 h-1.5 rounded-full bg-blue-500 dark:bg-[rgb(159,183,216)] shrink-0" />
         </router-link>
       </div>
     </nav>
 
     <!-- Bottom section -->
-    <div class="shrink-0 px-3 py-3 border-t border-[var(--sidebar-border)] space-y-0.5">
+    <div class="shrink-0 px-3 py-3 border-t border-sidebar-border space-y-0.5">
       <!-- Language toggle -->
       <button :class="[
         'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 group w-full',
         isCollapsed ? 'justify-center' : '',
-        'text-[var(--sidebar-text)] hover:bg-[var(--sidebar-hover-bg)] hover:text-[var(--sidebar-text-hover)]'
+        'text-sidebar-text hover:bg-sidebar-hover-bg hover:text-sidebar-text-hover'
       ]" :title="isCollapsed ? (language === 'vi' ? 'Tiếng Việt' : 'English') : undefined" @click="toggleLanguage">
-        <Globe :class="['w-5 h-5 shrink-0 text-[var(--sidebar-icon)] group-hover:text-[var(--sidebar-text-hover)]']" />
+        <Globe :class="['w-5 h-5 shrink-0 text-sidebar-icon group-hover:text-sidebar-text-hover']" />
         <span v-if="!isCollapsed" class="truncate flex-1 text-left">{{ language === 'vi' ? 'Tiếng Việt' : 'English'
-          }}</span>
+        }}</span>
       </button>
 
       <!-- Divider -->
-      <div class="border-t border-[var(--sidebar-border)] my-1" />
+      <div class="border-t border-sidebar-border my-1" />
 
       <!-- Logout -->
       <button :class="[
@@ -116,7 +116,7 @@ import { useRoute } from 'vue-router';
 import {
   LayoutDashboard, Upload, FileText, BarChart3,
   Search, User, Settings, LogOut, ChevronLeft, ChevronRight,
-  Globe, Bookmark
+  Globe, Bookmark, Sparkles, Briefcase
 } from 'lucide-vue-next';
 import { useAuth } from '@/composables/useAuth';
 import { useLanguage } from '@/composables/useLanguage';
@@ -141,14 +141,33 @@ const navItems = computed(() => [
   { path: '/mycvs', label: t('nav.myCvs'), icon: FileText },
   { path: '/analysis', label: t('nav.analysis'), icon: BarChart3 },
   { path: '/search', label: t('nav.search'), icon: Search },
+  { path: '/jobs', label: t('nav.jobs'), icon: Briefcase },
   { path: '/shortlist', label: t('nav.shortlist') || 'Shortlist', icon: Bookmark },
+  { path: '/ai-job-matching', label: t('nav.aiJobMatching') || 'AI Job Matching', icon: Sparkles },
+  { path: '/jobs/saved', label: t('nav.applications') || 'Saved Jobs', icon: Bookmark },
   { path: '/profile', label: t('nav.profile'), icon: User },
   { path: '/settings', label: t('nav.settings'), icon: Settings },
 ]);
 
 const isActive = (path: string) => {
-  return route.path === path || route.path.startsWith(path + '/');
-};
+  switch (path) {
+    case '/jobs':
+      return (
+        route.path === '/jobs' ||
+        route.path.startsWith('/jobs/') &&
+        !route.path.startsWith('/jobs/saved')
+      );
+
+    case '/jobs/saved':
+      return route.path === '/jobs/saved';
+
+    default:
+      return (
+        route.path === path ||
+        route.path.startsWith(path + '/')
+      );
+  }
+};  
 
 const userName = computed(() => {
   return user.value?.name || user.value?.username || user.value?.email || 'Guest';

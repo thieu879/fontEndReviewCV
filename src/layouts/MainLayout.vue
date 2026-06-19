@@ -1,29 +1,29 @@
 <template>
-  <div class="min-h-screen bg-[var(--bg-secondary)]">
+  <div class="min-h-screen bg-app-sub">
     <Sidebar />
     <div class="transition-all duration-300 ease-in-out" :class="sidebarCollapsed ? 'ml-[72px]' : 'ml-[260px]'">
       <!-- Header -->
       <header class="h-16 flex items-center px-6 gap-5 sticky top-0 z-30 backdrop-blur-md" :class="[
-        'bg-[var(--header-bg)]/95 border-b',
-        'border-[var(--header-border)]',
+        'bg-header/95 border-b',
+        'border-header-border',
         'shadow-sm'
       ]">
         <!-- Page title area -->
         <div class="flex-1">
-          <h2 class="text-[15px] font-semibold text-[var(--text-primary)] leading-tight">{{ pageTitle }}</h2>
-          <p class="text-xs text-[var(--text-muted)] mt-0.5">{{ pageSubtitle }}</p>
+          <h2 class="text-[15px] font-semibold text-body leading-tight">{{ pageTitle }}</h2>
+          <p class="text-xs text-body-muted mt-0.5">{{ pageSubtitle }}</p>
         </div>
 
         <!-- Actions -->
         <div class="flex items-center gap-2">
           <!-- Quick search trigger -->
           <button
-            class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-all"
+            class="flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-body-muted hover:text-body-sub hover:bg-app-hover transition-all"
             @click="showSearch = true">
             <Search class="w-4 h-4" />
             <span class="hidden sm:inline font-medium">Search</span>
             <kbd
-              class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono bg-[var(--bg-tertiary)] rounded border border-[var(--border-primary)] text-[var(--text-muted)]">
+              class="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 text-[10px] font-mono bg-app-soft rounded border border-border text-body-muted">
               <span class="text-[10px]">Ctrl</span>
               <span>K</span>
             </kbd>
@@ -31,34 +31,34 @@
 
           <!-- Notifications -->
           <button
-            class="relative w-9 h-9 flex items-center justify-center rounded-xl text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-all"
+            class="relative w-9 h-9 flex items-center justify-center rounded-xl text-body-muted hover:text-body-sub hover:bg-app-hover transition-all"
             :title="t('header.notifications')">
             <Bell class="w-[18px] h-[18px]" />
-            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-[var(--header-bg)]" />
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-header" />
           </button>
 
           <!-- Theme toggle -->
           <button @click="toggleTheme"
-            class="w-9 h-9 flex items-center justify-center rounded-xl text-[var(--text-muted)] hover:text-[var(--text-secondary)] hover:bg-[var(--bg-hover)] transition-all"
+            class="w-9 h-9 flex items-center justify-center rounded-xl text-body-muted hover:text-body-sub hover:bg-app-hover transition-all"
             :title="theme === 'dark' ? t('header.lightMode') : t('header.darkMode')">
             <Sun v-if="theme === 'dark'" class="w-[18px] h-[18px]" />
             <Moon v-else class="w-[18px] h-[18px]" />
           </button>
 
           <!-- Divider -->
-          <div class="w-px h-6 bg-[var(--border-primary)] mx-1" />
+          <div class="w-px h-6 bg-border mx-1" />
 
           <!-- User profile -->
           <router-link to="/profile"
-            class="flex items-center gap-3 pl-1 pr-3 py-1.5 rounded-xl hover:bg-[var(--bg-hover)] transition-all group">
+            class="flex items-center gap-3 pl-1 pr-3 py-1.5 rounded-xl hover:bg-app-hover transition-all group">
             <BaseAvatar :name="userName" :src="userAvatar" size="sm" status="online" />
             <div class="hidden sm:block text-right">
               <p
-                class="text-[13px] font-semibold text-[var(--text-primary)] leading-tight group-hover:text-blue-500 transition-colors">
+                class="text-[13px] font-semibold text-body leading-tight group-hover:text-blue-500 transition-colors">
                 {{ userName }}</p>
-              <p class="text-[11px] text-[var(--header-text-sub)] leading-tight">{{ userRoleText }}</p>
+              <p class="text-[11px] text-header-text-sub leading-tight">{{ userRoleText }}</p>
             </div>
-            <ChevronDown class="w-4 h-4 text-[var(--text-muted)] hidden sm:block" />
+            <ChevronDown class="w-4 h-4 text-body-muted hidden sm:block" />
           </router-link>
         </div>
       </header>

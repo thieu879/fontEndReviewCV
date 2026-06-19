@@ -20,17 +20,12 @@
         <!-- Filter Tabs + Sort -->
         <div class="flex items-center justify-between mb-4">
           <div class="flex items-center gap-2">
-            <button
-              v-for="tab in computedTabs"
-              :key="tab.value"
-              @click="activeTab = tab.value; fetchCVs()"
-              :class="[
-                'px-4 py-1.5 rounded-full text-sm font-semibold transition-colors',
-                activeTab === tab.value
-                  ? 'bg-blue-600 text-white'
-                  : 'border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50'
-              ]"
-            >
+            <button v-for="tab in computedTabs" :key="tab.value" @click="activeTab = tab.value; fetchCVs()" :class="[
+              'px-4 py-1.5 rounded-full text-sm font-semibold transition-colors',
+              activeTab === tab.value
+                ? 'bg-blue-600 text-white'
+                : 'border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700/50'
+            ]">
               {{ tab.label }}
               <span v-if="tab.count !== undefined" class="ml-1 opacity-70">({{ tab.count }})</span>
             </button>
@@ -290,21 +285,13 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <ConfirmDeleteModal
-      :is-open="showDeleteModal"
-      :item-name="selectedCV?.originalFileName || 'this CV'"
-      @close="showDeleteModal = false"
-      @confirm="handleDelete"
-    />
+    <ConfirmDeleteModal :is-open="showDeleteModal" :item-name="selectedCV?.originalFileName || 'this CV'"
+      @close="showDeleteModal = false" @confirm="handleDelete" />
 
     <!-- Quick Preview Modal -->
-    <QuickPreviewModal
-      v-if="previewCVData"
-      :is-open="showPreviewModal"
-      :candidate="(previewCVData as unknown as Candidate) || null"
-      @close="showPreviewModal = false"
-      @view-details="viewDetails"
-    />
+    <QuickPreviewModal v-if="previewCVData" :is-open="showPreviewModal"
+      :candidate="(previewCVData as unknown as Candidate) || null" @close="showPreviewModal = false"
+      @view-details="viewDetails" />
   </MainLayout>
 </template>
 

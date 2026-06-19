@@ -2,27 +2,12 @@
   <div class="relative inline-flex items-center justify-center" :class="sizeWrapper">
     <svg :class="['-rotate-90', sizeSvg]" :viewBox="viewBox">
       <!-- Track circle -->
-      <circle
-        :cx="center"
-        :cy="center"
-        :r="radius"
-        fill="transparent"
-        :stroke="trackColor"
-        :stroke-width="strokeWidth"
-      />
+      <circle :cx="center" :cy="center" :r="radius" fill="transparent" :stroke="trackColor"
+        :stroke-width="strokeWidth" />
       <!-- Progress circle -->
-      <circle
-        :cx="center"
-        :cy="center"
-        :r="radius"
-        fill="transparent"
-        :stroke="progressColor"
-        :stroke-width="progressStrokeWidth"
-        stroke-linecap="round"
-        :stroke-dasharray="circumference"
-        :stroke-dashoffset="dashOffset"
-        class="transition-all duration-700 ease-out"
-      />
+      <circle :cx="center" :cy="center" :r="radius" fill="transparent" :stroke="progressColor"
+        :stroke-width="progressStrokeWidth" stroke-linecap="round" :stroke-dasharray="circumference"
+        :stroke-dashoffset="dashOffset" class="transition-all duration-700 ease-out" />
     </svg>
     <!-- Center label -->
     <div class="absolute inset-0 flex items-center justify-center">

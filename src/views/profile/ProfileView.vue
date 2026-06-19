@@ -18,7 +18,7 @@
             <div class="text-center pb-6 border-b border-gray-100 dark:border-slate-700">
               <div class="relative inline-block mb-4">
                 <div class="w-32 h-32 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center text-white text-4xl font-bold mx-auto overflow-hidden">
-                  <img v-if="userAvatar || avatarPreview" :src="avatarPreview || userAvatar" alt="Avatar" class="w-full h-full object-cover" />
+                  <img v-if="userAvatar || avatarPreview" :src="avatarPreview || userAvatar" crossorigin="anonymous" alt="Avatar" class="w-full h-full object-cover" />
                   <template v-else>{{ userInitials }}</template>
                 </div>
                 <button @click="triggerAvatarUpload" :disabled="isUploadingAvatar"

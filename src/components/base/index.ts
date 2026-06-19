@@ -14,3 +14,5 @@ export { default as BaseScoreRing } from './BaseScoreRing.vue';
 export { default as BaseTextarea } from './BaseTextarea.vue';
 export { default as BaseTagInput } from './BaseTagInput.vue';
 export { default as BaseCheckbox } from './BaseCheckbox.vue';
+export { default as AdminTable } from './AdminTable.vue';
+export { default as AdminBadge } from './AdminBadge.vue';

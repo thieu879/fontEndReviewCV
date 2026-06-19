@@ -3,7 +3,8 @@
     <!-- Page Header -->
     <div class="flex items-start justify-between mb-6">
       <div>
-        <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">{{ t('dashboard.welcome') }}, {{ userFirstName }}</h1>
+        <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">{{ t('dashboard.welcome') }}, {{
+          userFirstName }}</h1>
         <p class="text-slate-500 dark:text-slate-400 text-sm">{{ t('dashboard.subtitle') }}</p>
       </div>
       <BaseButton variant="primary" @click="$router.push('/upload')">
@@ -21,25 +22,23 @@
     <template v-else>
       <!-- Stat Cards -->
       <div class="grid grid-cols-4 gap-4 mb-6">
-        <StatCard
-          v-for="stat in statsData"
-          :key="stat.label"
-          :title="stat.label"
-          :value="stat.value"
+        <StatCard v-for="stat in statsData" :key="stat.label" :title="stat.label" :value="stat.value"
           :change="stat.change?.toString() || ''"
           :change-type="stat.change !== null ? (stat.change >= 0 ? 'positive' : 'negative') : 'neutral'"
-          :icon="stat.icon"
-        />
+          :icon="stat.icon" />
       </div>
 
       <!-- Content Grid -->
       <div class="grid grid-cols-5 gap-5">
 
         <!-- Recent Activity Table -->
-        <div class="col-span-3 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+        <div
+          class="col-span-3 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
           <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 dark:border-slate-700">
             <h2 class="font-bold text-slate-900 dark:text-white">{{ t('dashboard.recentActivity') }}</h2>
-            <router-link to="/analysis" class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">{{ t('common.viewAll') || 'View All' }}</router-link>
+            <router-link to="/analysis"
+              class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">{{
+                t('common.viewAll') || 'View All' }}</router-link>
           </div>
           <div v-if="recentCandidates.length === 0" class="text-center py-10 text-slate-400 dark:text-slate-500">
             <FileText class="w-12 h-12 mx-auto mb-3 opacity-50" />
@@ -48,19 +47,20 @@
           <table v-else class="w-full">
             <thead>
               <tr class="bg-slate-50 dark:bg-slate-800/50">
-                <th class="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{ t('analysis.candidateName') }}</th>
-                <th class="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{ t('analysis.appliedFor') || 'Applied For' }}</th>
-                <th class="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{ t('analysis.score') }}</th>
-                <th class="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{ t('cv.status') }}</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{
+                  t('analysis.candidateName') }}</th>
+                <th class="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{
+                  t('analysis.appliedFor') || 'Applied For' }}</th>
+                <th class="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{
+                  t('analysis.score') }}</th>
+                <th class="px-4 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">{{
+                  t('cv.status') }}</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-slate-100 dark:divide-slate-700">
-              <tr
-                v-for="c in recentCandidates"
-                :key="c.id"
+              <tr v-for="c in recentCandidates" :key="c.id"
                 class="hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors cursor-pointer"
-                @click="$router.push(`/analysis?candidate=${c.id}`)"
-              >
+                @click="$router.push(`/analysis?candidate=${c.id}`)">
                 <td class="px-6 py-4">
                   <div class="flex items-center gap-3">
                     <BaseAvatar :name="c.name" size="sm" />
@@ -81,10 +81,7 @@
                   </div>
                 </td>
                 <td class="px-4 py-4">
-                  <BaseBadge
-                    :variant="getStatusVariant(c.status)"
-                    size="sm"
-                  >{{ formatStatus(c.status) }}</BaseBadge>
+                  <BaseBadge :variant="getStatusVariant(c.status)" size="sm">{{ formatStatus(c.status) }}</BaseBadge>
                 </td>
               </tr>
             </tbody>
@@ -92,8 +89,10 @@
         </div>
 
         <!-- Upload Trend Chart -->
-        <div class="col-span-2 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
-          <h2 class="font-bold text-slate-900 dark:text-white mb-5">{{ t('dashboard.uploadTrend') || 'Upload Trend' }}</h2>
+        <div
+          class="col-span-2 bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-6">
+          <h2 class="font-bold text-slate-900 dark:text-white mb-5">{{ t('dashboard.uploadTrend') || 'Upload Trend' }}
+          </h2>
           <div class="flex items-end justify-between gap-2 h-40 mb-3">
             <div v-for="(bar, i) in uploadTrend" :key="i" class="flex-1 flex flex-col items-center gap-1">
               <div class="w-full rounded-t-md transition-all"

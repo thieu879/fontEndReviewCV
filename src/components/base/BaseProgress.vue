@@ -1,10 +1,8 @@
 <template>
   <div class="flex items-center gap-3">
     <div :class="['flex-1 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden', heightClass]">
-      <div
-        :class="['h-full rounded-full transition-all duration-500 ease-out', barColorClass]"
-        :style="{ width: `${Math.min(Math.max(value, 0), 100)}%` }"
-      />
+      <div :class="['h-full rounded-full transition-all duration-500 ease-out', barColorClass]"
+        :style="{ width: `${Math.min(Math.max(value, 0), 100)}%` }" />
     </div>
     <span v-if="showLabel" :class="['text-sm font-semibold tabular-nums', labelColorClass]">
       {{ Math.round(value) }}%

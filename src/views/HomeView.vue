@@ -89,7 +89,7 @@
               {{ t("home.heroDesc") || "Extract structured data, analyze candidate fit, and make faster hiring decisions with our enterprise - grade AI engine." }}
             </p>
             <div class="flex items-center gap-4">
-              <router-link to="/register"
+              <router-link to="/dashboard"
                 class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 text-white rounded-lg font-semibold text-sm transition-colors shadow-sm shadow-blue-500/10">
                 {{ t("home.getStarted") || "Get Started" }}
                 <ArrowRight class="w-4 h-4" />

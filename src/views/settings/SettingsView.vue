@@ -45,7 +45,7 @@
             <div :class="['flex items-center gap-6 pb-6 mb-6 border-b', 'border-gray-100 dark:border-slate-700']">
               <div class="relative">
                 <div class="w-24 h-24 rounded-2xl overflow-hidden">
-                  <img v-if="currentAvatar" :src="currentAvatar" alt="Avatar" class="w-full h-full object-cover" />
+                  <img v-if="currentAvatar" :src="currentAvatar" crossorigin="anonymous" alt="Avatar" class="w-full h-full object-cover" />
                   <div v-else class="w-full h-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-white text-3xl font-bold">
                     {{ initials }}
                   </div>
